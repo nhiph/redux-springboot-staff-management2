@@ -50,7 +50,11 @@ public class TodoController {
                                                    @RequestBody Todo todos) {
         Todo todo = todoService.editTodo(todoId);
         todo.setTitle(todos.getTitle());
+        todo.setEmail(todos.getEmail());
+        todo.setPhone(todos.getPhone());
+        todo.setGender(todos.getGender());
         todo.setDetail(todos.getDetail());
+        todo.setHang(todos.getHang());
         final Todo updatedTodo = todoService.addItem(todo);
         return ResponseEntity.ok(updatedTodo);
     }

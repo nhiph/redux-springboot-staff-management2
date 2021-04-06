@@ -14,6 +14,10 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String detail;
+    private String title; //Họ tên
+    private String email;// Email
+    private String phone;// sdt
+    private String gender;// gioi tinh
+    private String detail; //diem trung binh
+    private String hang; //diem trung binh
 }

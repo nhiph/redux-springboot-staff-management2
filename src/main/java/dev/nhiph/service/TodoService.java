@@ -33,7 +33,7 @@ public class TodoService {
 
     public Todo addItem(Todo todo) {
         if (validator.isValid(todo)) {
-             todoRepository.save(todo);
+            todoRepository.save(todo);
         }
         return todo;
     }

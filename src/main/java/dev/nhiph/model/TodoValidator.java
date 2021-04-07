@@ -16,8 +16,13 @@ public class TodoValidator {
      */
     public boolean isValid(Todo todo) {
         return Optional.ofNullable(todo)
-                       .filter(t -> !StringUtils.isEmpty(t.getTitle())) // Kiểm tra title khác rỗng
-                       .filter(t -> !StringUtils.isEmpty(t.getDetail())) // Kiểm tra detail khác rỗng
-                       .isPresent(); // Trả về true nếu hợp lệ, ngược lại false
+                        .filter(t -> !StringUtils.isEmpty(t.getUsername())) // Kiểm tra title khác rỗng
+                        .filter(t -> !StringUtils.isEmpty(t.getName())) // Kiểm tra detail khác rỗng
+                        .filter(t -> !StringUtils.isEmpty(t.getEmail()))
+                        .filter(t -> !StringUtils.isEmpty(t.getStart_date()))
+                        .filter(t -> !StringUtils.isEmpty(t.getPosition()))
+                        .filter(t -> !StringUtils.isEmpty(t.getSalary()))
+                        .filter(t -> !StringUtils.isEmpty(t.getHang()))
+                        .isPresent(); // Trả về true nếu hợp lệ, ngược lại false
     }
 }

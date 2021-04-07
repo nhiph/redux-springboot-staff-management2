@@ -49,11 +49,12 @@ public class TodoController {
     public ResponseEntity<Todo> updateEmployee(@PathVariable(value = "todoId") Long todoId,
                                                    @RequestBody Todo todos) {
         Todo todo = todoService.editTodo(todoId);
-        todo.setTitle(todos.getTitle());
+        todo.setUsername(todos.getUsername());
+        todo.setName(todos.getName());
         todo.setEmail(todos.getEmail());
-        todo.setPhone(todos.getPhone());
-        todo.setGender(todos.getGender());
-        todo.setDetail(todos.getDetail());
+        todo.setStart_date(todos.getStart_date());
+        todo.setPosition(todos.getPosition());
+        todo.setSalary(todos.getSalary());
         todo.setHang(todos.getHang());
         final Todo updatedTodo = todoService.addItem(todo);
         return ResponseEntity.ok(updatedTodo);

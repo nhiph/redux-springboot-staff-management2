@@ -1,6 +1,7 @@
 package dev.nhiph.controller;
 
 import dev.nhiph.model.Todo;
+import dev.nhiph.model.dto.TodoDTO;
 import dev.nhiph.repository.TodoRepository;
 import dev.nhiph.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class TodoController {
     }
 
     @PostMapping("/listTodo")
-    public ResponseEntity<Todo> getTodoList(@RequestBody Todo todo) {
-        todoService.addItem(todo);
-        return ResponseEntity.ok().body(todo);
+    public ResponseEntity<TodoDTO> getTodoList(@RequestBody TodoDTO dto) {
+        todoService.addItem(dto);
+        return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping("/delete/{todoId}")
@@ -46,17 +47,17 @@ public class TodoController {
     }
 
     @PutMapping("/put/{todoId}")
-    public ResponseEntity<Todo> updateEmployee(@PathVariable(value = "todoId") Long todoId,
-                                                   @RequestBody Todo todos) {
-        Todo todo = todoService.editTodo(todoId);
-        todo.setUsername(todos.getUsername());
-        todo.setName(todos.getName());
-        todo.setEmail(todos.getEmail());
-        todo.setStart_date(todos.getStart_date());
-        todo.setPosition(todos.getPosition());
-        todo.setSalary(todos.getSalary());
-        todo.setHang(todos.getHang());
-        final Todo updatedTodo = todoService.addItem(todo);
-        return ResponseEntity.ok(updatedTodo);
+    public ResponseEntity<TodoDTO> updateEmployee(@PathVariable(value = "todoId") Long todoId,
+                                                   @RequestBody TodoDTO todos) {
+//        Todo todo = todoService.editTodo(todoId);
+//        todo.setUsername(todos.getUsername());
+//        todo.setName(todos.getName());
+//        todo.setEmail(todos.getEmail());
+//        todo.setStart_date(todos.getStart_date());
+//        todo.setPosition(todos.getPosition());
+//        todo.setSalary(todos.getSalary());
+//        todo.setHang(todos.getHang());
+//        final Todo updatedTodo = todoService.addItem(todo);
+        return ResponseEntity.ok(null);
     }
 }

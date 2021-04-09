@@ -2,6 +2,7 @@ package dev.nhiph.service;
 
 import dev.nhiph.model.Todo;
 import dev.nhiph.model.TodoValidator;
+import dev.nhiph.model.dto.TodoDTO;
 import dev.nhiph.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -31,7 +32,13 @@ public class TodoService {
                        .orElseGet(() -> todoRepository.findAll());
     }
 
-    public Todo addItem(Todo todo) {
+    public Todo addItem(TodoDTO dto) {
+        //Cuc entity ghi xuong
+        Todo todo = new Todo();
+
+        //Map dto to entity
+        todo.setPosition(dto.getChucVu());
+
         if (validator.isValid(todo)) {
             todoRepository.save(todo);
         }

@@ -33,11 +33,29 @@ public class TodoService {
     }
 
     public Todo addItem(TodoDTO dto) {
-        //Cuc entity ghi xuong
         Todo todo = new Todo();
+        todo.setUsername(dto.getAccount());
+        todo.setName(dto.getName());
+        todo.setEmail(dto.getEmail());
+        todo.setStartDate(dto.getStartDate());
 
-        //Map dto to entity
-        todo.setPosition(dto.getChucVu());
+        if(dto.getPosition()==1) {
+            todo.setSalary(dto.getSalary()*3);
+            todo.setPosition("Sếp");
+        }
+        else if(dto.getPosition()==2) {
+            todo.setSalary(dto.getSalary()*2);
+            todo.setPosition("Trưởng phòng");
+        }
+        else {
+            todo.setSalary(dto.getSalary());
+            todo.setPosition("Nhân viên");
+        }
+
+        if(dto.getHours()>=192) todo.setHang("Xuất sắc");
+        else if(dto.getHours()>=176) todo.setHang("Giỏi");
+        else if(dto.getHours()>=160) todo.setHang("Khá");
+        else todo.setHang("Trung bình");
 
         if (validator.isValid(todo)) {
             todoRepository.save(todo);
@@ -60,14 +78,7 @@ public class TodoService {
         return todo;
     }
 
-//    public int findIndex(List<Todo> todos, Long id){
-//        int index = 0;
-//        for(int i=0; i<todos.size(); i++){
-//            if(todos.get(i).getId() == id){
-//                index = i;
-//            }
-//        }
-//        return index;
-//    }
-
+    public void saveTodo(Todo todo){
+        todoRepository.save(todo);
+    }
 }

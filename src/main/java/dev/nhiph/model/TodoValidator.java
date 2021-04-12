@@ -19,10 +19,10 @@ public class TodoValidator {
                         .filter(t -> !StringUtils.isEmpty(t.getUsername())) // Kiểm tra title khác rỗng
                         .filter(t -> !StringUtils.isEmpty(t.getName())) // Kiểm tra detail khác rỗng
                         .filter(t -> !StringUtils.isEmpty(t.getEmail()))
-                        .filter(t -> !StringUtils.isEmpty(t.getStart_date()))
-                        .filter(t -> !StringUtils.isEmpty(t.getPosition()))
-                        .filter(t -> !StringUtils.isEmpty(t.getSalary()))
-                        .filter(t -> !StringUtils.isEmpty(t.getHang()))
+                        .filter(t -> !StringUtils.isEmpty(t.getStartDate().toString()))
+                        .filter(t -> !StringUtils.isEmpty(String.valueOf(t.getPosition())))
+                        .filter(t -> !StringUtils.isEmpty(String.valueOf(t.getSalary())))
+                        .filter(t -> !StringUtils.isEmpty(String.valueOf(t.getHang())))
                         .isPresent(); // Trả về true nếu hợp lệ, ngược lại false
     }
 }

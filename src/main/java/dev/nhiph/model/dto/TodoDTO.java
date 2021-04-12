@@ -1,13 +1,16 @@
 package dev.nhiph.model.dto;
 
+import lombok.Data;
+
+import java.util.Date;
+@Data
 public class TodoDTO {
-    private String ChucVu;
-
-    public String getChucVu() {
-        return ChucVu;
-    }
-
-    public void setChucVu(String chucVu) {
-        ChucVu = chucVu;
-    }
+    private String account;
+    private String name;
+    private String email;
+    private String password;
+    private Date startDate;
+    private int salary;
+    private int position;
+    private int hours;
 }

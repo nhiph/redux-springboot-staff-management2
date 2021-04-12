@@ -1,6 +1,7 @@
 package dev.nhiph.controller;
 
 import dev.nhiph.model.Todo;
+import dev.nhiph.model.TodoValidator;
 import dev.nhiph.model.dto.TodoDTO;
 import dev.nhiph.repository.TodoRepository;
 import dev.nhiph.service.TodoService;
@@ -18,8 +19,11 @@ public class TodoController {
     @Autowired
     private TodoService todoService;
 
-//    @Autowired
-//    private TodoRepository todoRepository;
+    @Autowired
+    private TodoValidator validator;
+
+    @Autowired
+    private TodoRepository todoRepository;
 
     private List<Todo> todoList = new CopyOnWriteArrayList<>();
 
@@ -41,23 +45,38 @@ public class TodoController {
 
     @DeleteMapping("/delete/{todoId}")
     public List<Todo> deleteTodo(@PathVariable(name = "todoId") Long todoId){
-
         todoService.deletelist(todoId);
         return todoService.getList();
     }
 
     @PutMapping("/put/{todoId}")
     public ResponseEntity<TodoDTO> updateEmployee(@PathVariable(value = "todoId") Long todoId,
-                                                   @RequestBody TodoDTO todos) {
-//        Todo todo = todoService.editTodo(todoId);
-//        todo.setUsername(todos.getUsername());
-//        todo.setName(todos.getName());
-//        todo.setEmail(todos.getEmail());
-//        todo.setStart_date(todos.getStart_date());
-//        todo.setPosition(todos.getPosition());
-//        todo.setSalary(todos.getSalary());
-//        todo.setHang(todos.getHang());
-//        final Todo updatedTodo = todoService.addItem(todo);
+                                                   @RequestBody TodoDTO dto) {
+        Todo todo = todoService.editTodo(todoId);
+        todo.setUsername(dto.getAccount());
+        todo.setName(dto.getName());
+        todo.setEmail(dto.getEmail());
+        todo.setStartDate(dto.getStartDate());
+
+        if(dto.getPosition()==1) {
+            todo.setSalary(dto.getSalary()*3);
+            todo.setPosition("Sếp");
+        }
+        else if(dto.getPosition()==2) {
+            todo.setSalary(dto.getSalary()*2);
+            todo.setPosition("Trưởng phòng");
+        }
+        else {
+            todo.setSalary(dto.getSalary());
+            todo.setPosition("Nhân viên");
+        }
+
+        if(dto.getHours()>=192) todo.setHang("Xuất sắc");
+        else if(dto.getHours()>=176) todo.setHang("Giỏi");
+        else if(dto.getHours()>=160) todo.setHang("Khá");
+        else todo.setHang("Trung bình");
+        todoService.saveTodo(todo);
         return ResponseEntity.ok(null);
     }
+
 }

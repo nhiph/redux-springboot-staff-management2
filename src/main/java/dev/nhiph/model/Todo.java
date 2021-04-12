@@ -7,6 +7,8 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Entity
 @Data
 public class Todo {
@@ -17,8 +19,8 @@ public class Todo {
     private String username;
     private String name;
     private String email;
-    private String start_date;
+    private Date startDate;
     private String position;
-    private String salary;
+    private int salary;
     private String hang;
 }
